@@ -1,10 +1,4 @@
 {
   "name": "Lossnay Ventilation",
   "content_in_root": true,
-  "domains": ["lossnay"],
-  "country": "worldwide",
-  "zip_release": false,
-  "filename": "__init__.py",
-  "iot_class": "assumed_state",
-  "render_readme": true
 }
