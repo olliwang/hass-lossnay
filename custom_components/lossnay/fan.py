@@ -13,11 +13,6 @@ import board
 from .const import DOMAIN
 
 
-async def async_setup_platform(hass, config, async_add_entities,
-                               discovery_info=None):
-    """Set up the fan platform."""
-    async_add_entities([LossnayFan()])
-
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Set up the Blueair fans from config entry."""
     async_add_entities([LossnayFan()])
