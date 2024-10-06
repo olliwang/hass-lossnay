@@ -11,9 +11,10 @@
   "integration_type": "device",
   "iot_class": "assumed_state",
   "requirements": [
-    "adafruit-circuitpython-mcp4725==1.4.14"
+    "adafruit-circuitpython-mcp4725==1.4.14",
+    "RPi.GPIO==0.7.1"
   ],
   "single_config_entry": true,
   "ssdp": [],
-  "version": "0.1.8"
+  "version": "0.1.9"
 }
