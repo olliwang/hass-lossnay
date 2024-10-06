@@ -1,0 +1,17 @@
+{
+  "domain": "lossnay",
+  "name": "Lossnay",
+  "codeowners": [
+    "@olliwang"
+  ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://www.home-assistant.io/integrations/lossnay",
+  "homekit": {},
+  "iot_class": "assumed_state",
+  "requirements": [
+    "adafruit-circuitpython-mcp4725==1.4.14"
+  ],
+  "ssdp": [],
+  "zeroconf": []
+}
