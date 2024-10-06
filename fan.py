@@ -6,9 +6,9 @@ from homeassistant.components.fan import (
 
 from typing import Any, Optional
 
-# import adafruit_mcp4725
-# import busio
-# import board
+import adafruit_mcp4725
+import busio
+import board
 
 from .const import DOMAIN
 
@@ -28,6 +28,9 @@ class LossnayFan(FanEntity):
 
     def __init__(self):
         """Initialize the temperature sensor."""
+        i2c = busio.I2C(board.SCL, board.SDA)
+        self._dac = adafruit_mcp4725.MCP4725(i2c)
+
         self._is_on = False
         self._max_speed = 4
         self._name = "Lossnay Ventilation"
@@ -97,12 +100,13 @@ class LossnayFan(FanEntity):
         half_speed_step = self._speed_step / 2
         speed = 0
         percentage = 0
-        while True:
+        while speed < self._max_speed:
             if abs(self._percentage - percentage) <= half_speed_step:
                 break
             percentage += self._speed_step
             speed += 1
-            if speed == self._max_speed:
-                break
 
         self._percentage = percentage
+
+        SPEED_DAC_VALUES = (0, 0.2, 0.4, 0.6, 0.9)
+        self._dac.normalized_value = SPEED_DAC_VALUES[speed]
