@@ -42,8 +42,7 @@ class LossnayFan(FanEntity):
         """Sets fan speed percentage."""
         self._percentage = percentage
         self.update_fan_speed()
-        if percentage > 0:
-            self._is_on = True
+        self._is_on = (percentage > 0)
         self.async_write_ha_state()
 
     async def async_turn_off(self, **kwargs):
@@ -103,7 +102,7 @@ class LossnayFan(FanEntity):
         speed = 0
         percentage = 0
         while speed < self._max_speed:
-            if abs(self.percentage() - percentage) <= half_speed_step:
+            if abs(self.percentage - percentage) <= half_speed_step:
                 break
             percentage += self._speed_step
             speed += 1
