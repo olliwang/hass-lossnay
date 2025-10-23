@@ -13,9 +13,14 @@ import board
 from .const import DOMAIN
 
 
+def _init_dac_blocking():
+    i2c = busio.I2C(board.SCL, board.SDA)
+    return adafruit_mcp4725.MCP4725(i2c)
+
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Set up the Blueair fans from config entry."""
-    async_add_entities([LossnayFan()])
+    dac = await hass.async_add_executor_job(_init_dac_blocking)
+    async_add_entities([LossnayFan(dac)])
 
 async def async_remove_entry(hass, entry):
     """Handle removal of an entry."""
@@ -26,10 +31,9 @@ async def async_remove_entry(hass, entry):
 class LossnayFan(FanEntity):
     """Controls Fan."""
 
-    def __init__(self):
+    def __init__(self, dac):
         """Initialize the temperature sensor."""
-        i2c = busio.I2C(board.SCL, board.SDA)
-        self._dac = adafruit_mcp4725.MCP4725(i2c)
+        self._dac = dac
 
         self._is_on = False
         self._max_speed = 4
