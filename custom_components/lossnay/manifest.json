@@ -11,11 +11,10 @@
   "integration_type": "device",
   "iot_class": "assumed_state",
   "requirements": [
-    "Adafruit-Blinka==8.23.0",
     "adafruit-circuitpython-mcp4725==1.4.14",
     "RPi.GPIO==0.7.1"
   ],
   "single_config_entry": true,
   "ssdp": [],
-  "version": "0.1.12"
+  "version": "0.1.13"
 }
